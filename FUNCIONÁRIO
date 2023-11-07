@@ -1,0 +1,59 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.lojadoce;
+
+/**
+ *
+ * @author 771800233
+ */
+public class Funcionario {
+    private String nome;
+    private String email;
+    private String endereco;
+    private double salario;
+    
+    public Funcionario (String nome, String email, String endereco, double salario)
+    {
+        this.nome = nome;
+        this.email = email;
+        this.endereco = endereco;
+        this.salario = salario;
+        }
+    
+    public void setnome(String nome) {
+        this.nome = nome;
+    }
+    
+    public String getnome(){
+        return nome;
+    }
+    
+    public void setemail(String email){
+        this.email = email;
+    }
+    
+    public String getemail(){
+        return email;
+    }
+    
+    public void setendereco (String endereco) {
+        this.endereco = endereco;
+    }
+    
+    public String getendereco(){
+        return endereco;
+    }
+    
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+     
+    public double getSalario() {
+        return salario;
+    }
+   
+    
+    
+}
