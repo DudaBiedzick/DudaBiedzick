@@ -1,0 +1,49 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.lojadoce;
+
+/**
+ *
+ * @author 771800233
+ */
+public class PedidoeProduto {
+    private String nomePedidoeProduto;
+    private String preco;
+    private String dataElaboracao;
+    private String categoria;
+    
+    public PedidoeProduto (String nomePedidoeProduto, String preco, String dataElaboracao, String categoria){
+        this.nomePedidoeProduto = nomePedidoeProduto;
+        this.preco = preco;
+        this.dataElaboracao = dataElaboracao;
+        this.categoria = categoria;
+    }
+    
+    public void setnomePedidoeProduto (String nomePedidoeProduto) {
+        this.nomePedidoeProduto = nomePedidoeProduto;
+    }
+    
+    public String getnomePedidoeProduto (){
+        return nomePedidoeProduto;
+    }
+    
+    public void setpreco (String preco) {
+        this.preco = preco;
+    }
+    
+    public String getpreco () {
+        return preco;
+    }
+    
+    public void setdataElaboracao (String dataElaboracao) {
+        this.dataElaboracao = dataElaboracao;
+    }
+    
+    public String getdataElaboracao (){
+        return dataElaboracao;
+    }
+    
+
+}
