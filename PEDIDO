@@ -1,0 +1,60 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.lojadoce;
+
+/**
+ *
+ * @author 771800233
+ */
+public class PedidoeProduto {
+    ArrayList <cadastroProduto> cadastroProduto = new ArrayList();
+    private String nomeProduto;
+    private String tamanho;
+    private double preco;
+    
+    
+    public PedidoeProduto (String nomeProduto, String tamanho, double preco){
+        this.nomeProduto = nomeProduto;
+        this.preco = preco;
+        this.tamanho = tamanho;
+    }
+    
+    public void setnomeProduto (String nomePedidoeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+    
+    public String getnomeProduto (){
+        return nomeProduto;
+    }
+    
+    public void settamanho (String tamanho) {
+        this.tamanho = tamanho;
+    }
+    
+    public String gettamanho (){
+        return tamanho;
+    }
+    
+    public void setpreco (double preco) {
+        this.preco = preco;
+    }
+    
+    public double getpreco () {
+        return preco;
+    }
+    
+    public static void main(String[] args) {
+        Scanner dados = new Scanner(System.in);
+        Scanner dados1 = new Scanner(System.in);
+        Scanner dados2 = new Scanner(System.in);
+        Scanner dados3 = new Scanner(System.in);
+
+        cadastroProduto c1 = new cadastroProduto();
+
+       String nome = "";
+       String tamanho = "";
+       double preco = 0;
+    
+}
