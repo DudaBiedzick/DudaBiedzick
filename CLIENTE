@@ -1,0 +1,93 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.lojadoce;
+
+/**
+ *
+ * @author 771800233
+ */
+public class Cliente {
+    private int id;
+    private String nomeCliente;
+    private String telefone;
+    
+    
+public Cliente (int id, String nomeCliente, String telefone)
+{
+    this.nomeCliente = nomeCliente;
+    this.telefone = telefone;
+}
+    public void setid(int id){
+        this.id = id;
+    }
+    
+    public int getid(){
+        return id;
+    }
+
+    public void setnomeCliente (String nomeCliente){
+        this.nomeCliente = nomeCliente;
+    }
+    
+    public String getnomeCliente() {
+        return nomeCliente;
+    }
+    
+    public void settelefone (String telefone) {
+        this.telefone = telefone;
+    }
+    
+    public String gettelefone() {
+        return telefone;
+    }
+    
+public void cadastrar  (){
+    String sql = "INSERT INTO cliente (nome, telefone) VALUES ( "
+        + " '" + this.getnome() + "' , "
+        + " '" + this.gettelefone() + "' , "
+    Conexao.executar( sql );
+}
+
+public void editar(){
+    String sql = "UPDATE cliente SET"
+        + " nome = '" + this.getnome() + "' , "
+        + " telefone = '" + this.gettelefone() + "' , "
+        + " WHERE idCliente = " + this.getid();
+    Conexao.executar( sql );
+}
+
+public static void excluir(int idCliente){
+    String sql = "DELETE FROM cliente WHERE idCliente = " + idCliente;
+    Conexao.executar( sql );
+}
+
+
+public static ArrayList<Cliente> getClientes(){
+    ArrayList<Cliente> lista = new ArrayList<>();
+
+    String sql = "SELECT idCliente, nome, telefone, cliente FROM cliente ORDER BY nome";
+
+    ResultSet rs = Conexao.consultar( sql );
+
+    if(rs!=null){
+
+        try{
+            while (rs.next()) {                
+                String nome = rs.getString(2);
+                String telefone = rs.getString( "telefone" );
+                Cliente Cli = new Cliente(nome, telefone);
+                Cli.setid(rs.getint("idCliente" ));
+                lista.add(Cli);
+            }
+        }catch(Exception e){
+
+        }
+
+    }
+
+    return lista;
+
+}
+}
