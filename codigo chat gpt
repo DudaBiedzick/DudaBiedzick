@@ -1,0 +1,146 @@
+package com.mycompany.lojadoce;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class LojaDoce {
+    public static void main(String[] args) {
+        Scanner ler = new Scanner(System.in);
+        ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        ArrayList<PedidoeProduto> listaProdutos = new ArrayList<>();
+        int menu;
+        
+        do {
+            System.out.println("1 - Cadastrar Funcionário");
+            System.out.println("2 - Cadastrar Cliente");
+            System.out.println("3 - Listar Funcionários");
+            System.out.println("4 - Listar Clientes");
+            System.out.println("5 - Excluir Funcionário");
+            System.out.println("6 - Editar Funcionário");
+            System.out.println("7 - Cadastrar produto");
+            System.out.println("8 - Listar produtos");
+            System.out.println("9 - Excluir produto");
+            System.out.println("10 - Sair");
+            System.out.print("Digite sua opção: ");
+            menu = ler.nextInt();
+            
+            switch (menu) {
+                case 1:
+                    System.out.println("Nome: ");
+                    ler.nextLine();
+                    String nome = ler.nextLine();
+                    System.out.println("Email: ");
+                    String email = ler.nextLine();
+                    System.out.println("Endereço: ");
+                    String endereco = ler.nextLine();
+                    System.out.println("Salário: ");
+                    double salario = ler.nextDouble();
+                    Funcionario funcionario = new Funcionario(nome, email, endereco, salario);
+                    listaFuncionarios.add(funcionario);
+                    System.out.println("Funcionário cadastrado com sucesso!");
+                    break;
+
+                case 2:
+                    System.out.println("Nome: ");
+                    ler.nextLine();
+                    String nomeCliente = ler.nextLine();
+                    System.out.println("Telefone: ");
+                    String telefone = ler.nextLine();
+                    Cliente cliente = new Cliente(nomeCliente, telefone);
+                    listaClientes.add(cliente);
+                    System.out.println("Cliente cadastrado com sucesso!");
+                    break;
+
+                case 3:
+                    System.out.println("Lista de Funcionários: ");
+                    for (Funcionario f : listaFuncionarios) {
+                        f.dados();
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Lista de Clientes: ");
+                    for (Cliente c : listaClientes) {
+                        c.dados();
+                    }
+                    break;
+
+                case 5:
+                    System.out.println("Lista de Funcionários: ");
+                    for (Funcionario f : listaFuncionarios) {
+                        System.out.println(f.getid() + " - " + f.getNome());
+                    }
+                    System.out.print("Digite o ID do funcionário que será excluído: ");
+                    int idFun = ler.nextInt();
+                    Funcionario.excluir(idFun);
+                    break;
+
+                case 6:
+                    System.out.println("Lista de Funcionários: ");
+                    for (Funcionario p : listaFuncionarios) {
+                        System.out.println(p.getid() + " - " + p.getNome());
+                    }
+                    System.out.print("Digite o ID do funcionário que será editado: ");
+                    int idFunEdit = ler.nextInt();
+                    for (Funcionario func : listaFuncionarios) {
+                        if (func.getid() == idFunEdit) {
+                            System.out.println("Novo nome: ");
+                            ler.nextLine();
+                            String novoNome = ler.nextLine();
+                            System.out.println("Novo e-mail: ");
+                            String novoEmail = ler.nextLine();
+                            System.out.print("Novo endereco: ");
+                            String novoEndereco = ler.nextLine();
+                            System.out.println("Novo salário: ");
+                            double novoSalario = ler.nextDouble();
+                            func.setNome(novoNome);
+                            func.setEmail(novoEmail);
+                            func.setEndereco(novoEndereco);
+                            func.setSalario(novoSalario);
+                            System.out.println("Funcionário editado com sucesso!");
+                            break;
+                        }
+                    }
+                    break;
+
+                case 7:
+                    System.out.println("Nome do Produto: ");
+                    ler.nextLine();
+                    String nomeProduto = ler.nextLine();
+                    System.out.println("Tamanho do produto: ");
+                    String tamanho = ler.nextLine();
+                    System.out.print("Preço: ");
+                    double preco = ler.nextDouble();
+                    PedidoeProduto produto = new PedidoeProduto(nomeProduto, tamanho, preco);
+                    listaProdutos.add(produto);
+                    System.out.println("Produto cadastrado com sucesso!");
+                    break;
+
+                case 8:
+                    System.out.println("Lista de Produtos: ");
+                    for (PedidoeProduto p : listaProdutos) {
+                        p.dados();
+                    }
+                    break;
+
+                case 9:
+                    System.out.println("Lista de Produtos: ");
+                    for (PedidoeProduto p : listaProdutos) {
+                        System.out.println(p.getNomeProduto() + " - " + p.getTamanho());
+                    }
+                    System.out.print("Digite o nome do produto que será excluído: ");
+                    ler.nextLine();
+                    String nomeProdutoExcluir = ler.nextLine();
+                    for (PedidoeProduto prod : listaProdutos) {
+                        if (prod.getNomeProduto().equals(nomeProdutoExcluir)) {
+                            listaProdutos.remove(prod);
+                            System.out.println("Produto excluído com sucesso!");
+                            break;
+                        }
+                    }
+                    break;
+            }
+        } while (menu != 10);
+    }
+}
