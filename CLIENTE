@@ -35,5 +35,52 @@ public Cliente (String nomeCliente, String telefone)
         return telefone;
     }
     
+    public void cadastrar(){
+    String sql =  "INSERT INTO funcionario (nome, telefone) VALUES ( "
+                + " '" + this.getnome() +   "' ,  "
+                + " '" + this.gettelefone() +  "' ,  "
+    Conexao.executar( sql );
+}
+
+public void editar(){
+    String sql =  "UPDATE funcionario SET  "
+                + " nome    = '" + this.getnome() +   "' ,  "
+                + " telefone   = '" + this.gettelefone() +  "' ,  "
+                + " WHERE idCliente = " + this.getid();
+    Conexao.executar( sql );
+}
+
+public static void excluir(int idCliente){
+    String sql =  "DELETE FROM cliente WHERE idCliente = " + idCliente;
+    Conexao.executar( sql );
+}
+
+
+public static ArrayList<Cliente> getClientes(){
+    ArrayList<Cliente> lista = new ArrayList<>();
     
+    String sql = "SELECT idCliente, nome, telefone, cliente FROM cliente ORDER BY nome ";
+    
+    ResultSet rs = Conexao.consultar( sql );
+    
+    if( rs != null){
+        
+        try{
+            while ( rs.next() ) {                
+                String nome = rs.getString( 2 );
+                String telefone = rs.getString( "email" );
+                Cliente cli = new Cliente(nome, telefone);
+                fun.setid( rs.getint( "idCliente" ) );
+                lista.add( cli );
+            }
+        }catch(Exception e){
+            
+        }
+        
+    }
+ 
+    return lista;
+
+}
+
 }
