@@ -1,0 +1,59 @@
+import java.util.ArrayList;
+
+public class PedidoeProduto {
+    private ArrayList<cadastroProduto> listaProdutos = new ArrayList<>();
+    
+    private String nomeProduto;
+    private String tamanho;
+    private double preco;
+    
+    public PedidoeProduto(String nomeProduto, String tamanho, double preco) {
+        this.nomeProduto = nomeProduto;
+        this.tamanho = tamanho;
+        this.preco = preco;
+    }
+    
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+    
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+    
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
+    }
+    
+    public String getTamanho() {
+        return tamanho;
+    }
+    
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+    
+    public double getPreco() {
+        return preco;
+    }
+    
+    public void cadastrar() {
+        listaProdutos.add(new cadastroProduto(nomeProduto, tamanho, preco));
+    }
+    
+    // Você pode implementar métodos para editar e excluir produtos, semelhantes aos métodos em Funcionario e Cliente.
+    
+    public static ArrayList<PedidoeProduto> getPedidoeProdutos() {
+        ArrayList<PedidoeProduto> lista = new ArrayList<>();
+        // Implemente a consulta no banco de dados ou em outra estrutura de armazenamento para obter a lista de produtos.
+        // Você pode preencher 'lista' com os produtos obtidos.
+        return lista;
+    }
+    
+    public void dados() {
+        System.out.println("Nome do Produto: " + nomeProduto);
+        System.out.println("Tamanho: " + tamanho);
+        System.out.println("Preço: " + preco);
+        System.out.println("########################");
+    }
+}
