@@ -1,0 +1,153 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
+ */
+
+package com.mycompany.lojadoce;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author 771800233
+ */
+public class LojaDoce {
+  public static void main(String[] args) {
+    Scanner ler = new Scanner(System.in);
+       //ArrayList<Professor> listaProfessores = new ArrayList();
+       ArrayList<Funcionario> listaFuncionarios = new ArrayList();
+       ArrayList<Cliente> listaClientes = new ArrayList();
+       int menu, idFun,idCli;
+       String nome,email,endereco,nomeCliente,telefone,nomeProduto,tamanho;
+       double salario;
+       Funcionario funcionario;
+       
+       do{
+           System.out.println("1 - Cadastrar Funcionário");
+           System.out.println("2 - Cadastrar Cliente");
+           System.out.println("3 - Listar Funcionários");
+           System.out.println("4 - Listar Clientes");
+           System.out.println("5 - Excluir Funcionário");
+           System.out.println("6 - Editar Funcionário");
+           System.out.println("7 - Cadastrar produto");
+           System.out.println("8 - Listar produtos"); 
+           System.out.println("9 - Excluir produto");
+           System.out.println("10 - Sair");
+           System.out.print("Digite sua opção: ");
+           menu=ler.nextInt();
+           switch(menu){
+               case 1:
+                   System.out.println("Nome: ");
+                   ler.nextLine();
+                   nome = ler.nextLine();
+                   System.out.println("Email: ");
+                   email = ler.nextLine();
+                   System.out.println("Endereço: ");
+                   endereco = ler.nextLine();
+                   System.out.println("Salário: ");
+                   salario = ler.nextDouble();
+                   funcionario = new Funcionario(nome, email, endereco ,salario);
+                   funcionario.cadastrar();
+      //             listaFuncionários.add(funcionario);
+                   System.out.println("Cadastrado com sucesso!");
+               break;
+               
+               case 2:
+                   System.out.println("Nome: ");
+                   ler.nextLine();
+                   nomeCliente = ler.nextLine();
+                   System.out.println("Telefone: ");
+                   telefone = ler.nextLine();
+                   cliente = new Cliente(nomeCliente, telefone);
+                   cliente.cadastrar();
+      //             listaFuncionários.add(funcionario);
+                   System.out.println("Cadastrado com sucesso!");
+               break;
+               
+               case 3:
+                   System.out.println("Lista de Funcionarios: ");
+                   listaFuncionarios = Funcionario.getFuncionarios();
+                   for(Funcionario f:listaFuncionarios){
+                   f.dados();
+                   }
+               break;
+               
+               case 4:
+                   System.out.println("Lista de Clientes: ");
+                   listaClientes = Cliente.getClientes();
+                   for(Cliente c:listaClientes){
+                    c.dados();
+                   }
+               break;
+               
+               case 5:
+                   listaFuncionarios = Funcionario.getFuncionarios();
+                   for(Funcionario f:listaFuncionarios){
+                     System.out.println( f.getid() + "  -  " + f.getnome() );
+                   }
+                   System.out.print("Digite o ID do funcionario que será excluído: ");
+                   idFun = ler.nextInt();
+                   Funcionario.excluir( idFun );
+               break;
+               
+               case 6:
+                   listaFuncionarios = Funcionario.getFuncionarios();
+                   for(Funcionario p:listaFuncionarios){
+                    System.out.println( p.getid() + "  -  " + p.getnome() );
+                   }
+                   System.out.print("Digite o ID do funcionario que será editado: ");
+                   idFun = ler.nextInt();
+                   System.out.println("Novo nome: ");
+                   ler.nextLine();
+                   nome = ler.nextLine();
+                   System.out.println("Novo e-mail: ");
+                   email = ler.nextLine();
+                   System.out.print("Novo endereco: ");
+                   endereco = ler.nextLine();
+                   System.out.println("Novo salário: ");
+                   salario = ler.nextDouble();
+                   funcionario = new Funcionario(nome, email, endereco, salario);
+                   funcionario.setid( idFun );
+                   funcionario.editar();
+               break;
+               
+               case 7:
+                   System.out.println("Nome do Produto: ");
+                   ler.nextLine();
+                   nomeCliente = ler.nextLine();
+                   System.out.println("Tamanho do produto: ");
+                   telefone = ler.nextLine();
+                   System.out.print("Preço: ");
+                   preco = ler.nextDouble();
+                   PedidoeProduto = new PedidoeProduto(nomeProduto, tamanho, preco);
+                   PedidoeProduto.cadastrar();
+      //             listaFuncionários.add(funcionario);
+                   System.out.println("Produtos cadastrados com sucesso!");
+                   
+                break; 
+                 
+                case 8:
+                   System.out.println("Lista de Produtos: ");
+                   listaPedidoeProduto = PedidoeProduto.getPedidoeProdutos();
+                   for(PedidoeProduto p:listaPedidoeProdutos){
+                   p.dados();
+                   }
+                
+                case 9:
+                   listaPedidoeProdutoProduto = PedidoeProduto.getPedidoeProdutos();
+                   for(PedidoeProduto p:PedidoeProdutos){
+                    System.out.println( p.getnomePedidoeProdutoProduto() + "  -  " + p.getnomePedidoeProdutoProduto() );
+                   }
+                   System.out.print("Digite o nome do produto que será excluído: ");
+                   nomePedidoeProdutoProduto = ler.nextInt();
+                   PedidoeProduto.excluir( nomePedidoeProdutoProduto );
+                break;
+               
+               
+            }
+        }while(menu!=10);
+    }
+  
+
+}
