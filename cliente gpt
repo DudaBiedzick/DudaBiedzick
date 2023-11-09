@@ -1,0 +1,37 @@
+public class Cliente {
+    private int id;
+    private String nomeCliente;
+    private String telefone;
+
+    public Cliente(String nomeCliente, String telefone) {
+        this.nomeCliente = nomeCliente;
+        this.telefone = telefone;
+    }
+
+    // Getters e setters (já estão corretos)
+
+    public void cadastrar() {
+        // Implemente a inserção do cliente no banco de dados ou em outra estrutura de armazenamento.
+    }
+
+    public void editar() {
+        // Implemente a edição do cliente no banco de dados ou em outra estrutura de armazenamento.
+    }
+
+    public static void excluir(int idCliente) {
+        // Implemente a exclusão do cliente no banco de dados ou em outra estrutura de armazenamento.
+    }
+
+    public static ArrayList<Cliente> getClientes() {
+        ArrayList<Cliente> lista = new ArrayList<>();
+
+        // Implemente a consulta no banco de dados ou em outra estrutura de armazenamento
+        // para obter a lista de clientes.
+
+        return lista;
+    }
+
+    public void dados() {
+        // Implemente a exibição dos dados do cliente.
+    }
+}
