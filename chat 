@@ -1,0 +1,53 @@
+Certamente! Vou ajudá-lo a corrigir os erros presentes no código. Aqui estão as correções:
+
+1. No método `cadastrar()`, você está faltando fechar aspas duplas depois do último parâmetro do SQL. O código corrigido ficaria assim:
+
+```java
+public void cadastrar() {
+    String sql = "INSERT INTO pedido (nome, tamanho, preco) VALUES ( "
+        + "'" + this.getnomePedidoeProduto() + "' , "
+        + "'" + this.gettamanho() + "' , "
+        + "'" + this.getpreco() + "' ) "; // Fechando aspas duplas corretamente
+    Conexao.executar(sql);
+}
+```
+
+2. No método `excluir()`, você está usando o parâmetro incorreto no trecho `idPedidoeProduto`. A correção seria:
+
+```java
+public static void excluir(int idPedidoeProduto) {
+    String sql = "DELETE FROM pedido WHERE id = " + idPedidoeProduto; // Usando o campo "id" corretamente
+    Conexao.executar(sql);
+}
+```
+
+3. No método `getPedidoeProdutos()`, há um erro de digitação em `PedidoeProduto` no trecho `FROM PedidoeProduto`. A correção é:
+
+```java
+public static ArrayList<PedidoeProduto> getPedidoeProdutos() {
+    ArrayList<PedidoeProduto> lista = new ArrayList<>();
+
+    String sql = "SELECT idPedidoeProduto, nome, tamanho, preco FROM PedidoeProduto ORDER BY nome"; // Corrigindo o nome da tabela
+
+    ResultSet rs = Conexao.consultar(sql);
+
+    if (rs != null) {
+        try {
+            while (rs.next()) {
+                String nomePedidoeProduto = rs.getString(2);
+                String tamanho = rs.getString(3); // Corrigindo o número do índice
+                double preco = rs.getDouble(4);
+                PedidoeProduto prod = new PedidoeProduto(nomePedidoeProduto, tamanho, preco);
+                prod.setid(rs.getInt(1)); // Corrigindo o número do índice
+                lista.add(prod);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    return lista;
+}
+```
+
+Certifique-se de avaliar os erros e modificar o código original de acordo com as correções fornecidas.
