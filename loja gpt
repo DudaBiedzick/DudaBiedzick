@@ -1,0 +1,91 @@
+Claro! Aqui estão as correções dos erros encontrados no código `PedidoeProduto` da classe `LojaDoce`:
+
+```java
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+public class PedidoeProduto {
+    private int id;
+    private String nomePedidoeProduto;
+    private String tamanho;
+    private double preco;
+
+    public PedidoeProduto(String nomePedidoeProduto, String tamanho, double preco) {
+        this.nomePedidoeProduto = nomePedidoeProduto;
+        this.preco = preco;
+        this.tamanho = tamanho;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setNomePedidoeProduto(String nomePedidoeProduto) {
+        this.nomePedidoeProduto = nomePedidoeProduto;
+    }
+
+    public String getNomePedidoeProduto() {
+        return nomePedidoeProduto;
+    }
+
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void cadastrar() {
+        String sql = "INSERT INTO pedido (nome, tamanho, preco) VALUES ('" + this.getNomePedidoeProduto() + "', '"
+                + this.getTamanho() + "', " + this.getPreco() + ")";
+        Conexao.executar(sql);
+    }
+
+    public static void excluir(int idPedidoeProduto) {
+        String sql = "DELETE FROM pedido WHERE id = " + idPedidoeProduto;
+        Conexao.executar(sql);
+    }
+
+    public static ArrayList<PedidoeProduto> getPedidoeProdutos() {
+        ArrayList<PedidoeProduto> lista = new ArrayList<>();
+
+        String sql = "SELECT id, nome, tamanho, preco FROM pedido ORDER BY nome";
+
+        ResultSet rs = Conexao.consultar(sql);
+
+        if (rs != null) {
+
+            try {
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String nomePedidoeProduto = rs.getString("nome");
+                    String tamanho = rs.getString("tamanho");
+                    double preco = rs.getDouble("preco");
+                    PedidoeProduto prod = new PedidoeProduto(nomePedidoeProduto, tamanho, preco);
+                    prod.setId(id);
+                    lista.add(prod);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return lista;
+    }
+}
+```
+
+Lembre-se de que as correções incluem ajustes nos nomes de tabelas e campos de acordo com o seu banco de dados. Verifique essas informações e altere o código de acordo. Além disso, certifique-se de que a classe `Conexao` esteja importada corretamente e funcionando adequadamente para estabelecer a conexão com o banco de dados.
