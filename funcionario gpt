@@ -1,0 +1,44 @@
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+public class Funcionario {
+    private int id;
+    private String nome;
+    private String email;
+    private String endereco;
+    private double salario;
+
+    public Funcionario(String nome, String email, String endereco, double salario) {
+        this.nome = nome;
+        this.email = email;
+        this.endereco = endereco;
+        this.salario = salario;
+    }
+
+    // Getters e setters (já estão corretos)
+
+    public void cadastrar() {
+        // Implemente a inserção do funcionário no banco de dados ou em outra estrutura de armazenamento.
+    }
+
+    public void editar() {
+        // Implemente a edição do funcionário no banco de dados ou em outra estrutura de armazenamento.
+    }
+
+    public static void excluir(int idFuncionario) {
+        // Implemente a exclusão do funcionário no banco de dados ou em outra estrutura de armazenamento.
+    }
+
+    public static ArrayList<Funcionario> getFuncionarios() {
+        ArrayList<Funcionario> lista = new ArrayList<>();
+
+        // Implemente a consulta no banco de dados ou em outra estrutura de armazenamento
+        // para obter a lista de funcionários.
+
+        return lista;
+    }
+
+    public void dados() {
+        // Implemente a exibição dos dados do funcionário.
+    }
+}
