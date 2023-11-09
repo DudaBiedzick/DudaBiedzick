@@ -1,0 +1,130 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package ldme;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author 771800233
+ */
+public class Funcionario {
+    private int id;
+    private String nome;
+    private String email;
+    private String endereco;
+    private double salario;
+    
+    public Funcionario (String nome, String email, String endereco, double salario)
+    {
+        this.nome = nome;
+        this.email = email;
+        this.endereco = endereco;
+        this.salario = salario;
+        }
+    
+    public void setid(int id){
+        this.id = id;
+    }
+    
+    public int getid(){
+        return id;
+    }
+
+    public void setnome(String nome) {
+        this.nome = nome;
+    }
+    
+    public String getnome(){
+        return nome;
+    }
+    
+    public void setemail(String email){
+        this.email = email;
+    }
+    
+    public String getemail(){
+        return email;
+    }
+    
+    public void setendereco (String endereco) {
+        this.endereco = endereco;
+    }
+    
+    public String getendereco(){
+        return endereco;
+    }
+    
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+     
+    public double getSalario() {
+        return salario;
+    }
+   
+    public void cadastrar(){
+    String sql = "INSERT INTO funcionario (nome, email, endereco, salario) VALUES ( "
+            + " '" + this.getnome() + "' , "
+            + " '" + this.getemail() + "' , "
+            + " '" + this.getendereco() + "' , "
+            + "  " + this.getSalario() +" ) ";
+    conexao.executar( sql );
+}
+
+public void editar(){
+    String sql = "UPDATE funcionario SET"
+            + " nome = '" + this.getnome() + "' , "
+            + " email = '" + this.getemail() + "' , "
+            + " endereco = '" + this.getendereco() + "', "
+            + " salario = " + this.getSalario() +" "
+            + " WHERE idFuncionario = " + this.getid();
+    conexao.executar( sql );
+}
+
+public static void excluir(int idFuncionario){
+    String sql = "DELETE FROM funcionario WHERE idFuncionario = " + idFuncionario;
+    conexao.executar( sql );
+}
+
+
+public static ArrayList<Funcionario> getFuncionarios(){
+    ArrayList<Funcionario> lista = new ArrayList<>();
+
+    String sql = "SELECT idFuncionario, nome, email, endereco, salario FROM funcionario ORDER BY nome";
+
+    ResultSet rs = conexao.consultar( sql );
+
+    if(rs!=null){
+
+        try{
+            while (rs.next()) {                
+              String nome = rs.getString(2);
+              String email = rs.getString(" email ");
+              String endereco = rs.getString("endereco");
+              double salario  = rs.getDouble( "salario" );
+              Funcionario fun = new Funcionario(nome, email, endereco, salario);
+              fun.setid(rs.getInt( "idFuncionario" ) );
+              lista.add(fun);
+            }
+        }catch(Exception e){
+
+        }
+
+    }
+
+    return lista;
+}
+
+public void dados (){
+    System.out.println("Nome: " + getnome());
+    System.out.println("Email: " + getemail());
+    System.out.println("Endereço: " + getendereco());
+    System.out.println("Salário: " + getSalario());
+    System.out.println("########################");
+}
+    
+}
